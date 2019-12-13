@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+
 const Header = (props) => {
     return(
         <div>
@@ -9,28 +10,49 @@ const Header = (props) => {
         )
 }
 
-const Part = (props) => {
-    return(
-        <div>
-        <p>{props.part} {props.exercises}</p>
-        </div>
-        )
-}
 
 const Content = (props) => {   
-    return(
-        <div>
-            <Part part = {props.part1} exercises = {props.exercises1} />
-            <Part part = {props.part2} exercises = {props.exercises2} />
-            <Part part = {props.part3} exercises = {props.exercises3} />
-        </div>
-        )
-}
+  
+  const contentNames = [];
+  const contentExercises = [];
+  const contentProps = [];
+  
+  for (const value in props){
+   
+    //Array of objects
+    contentProps.push(props[value]);
+    
+    // for...in Loops to extract data from props
+
+      for (const valueObj in props[value]){
+      
+        contentNames.push(props[value][valueObj]['name']);
+        contentExercises.push(props[value][valueObj]['exercises']);
+    
+      }
+  }
+
+
+
+  return (
+    <div>
+      {contentNames.map(value => value)} 
+    
+    </div> 
+    )
+
+  }
+  
 
 const Total = (props) => {
-    return(
+  
+  
+  
+
+
+  return(
         <div>
-        <p>Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}</p> 
+        <p>Number of exercises {props.parts}</p> 
         </div>
         )
 }
@@ -59,9 +81,10 @@ const App = () => {
     
     <div>
         <div>
+            <h1>Hola Mundo XX</h1>
             <Header course= {course} />
-            <Content part = {part}/>
-            <Total part= {part}/>
+            <Content part = {parts}/>
+            <Total part = {parts}/>
         </div>  
     </div>
   )
