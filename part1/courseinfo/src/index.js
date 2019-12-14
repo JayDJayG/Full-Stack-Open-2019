@@ -13,46 +13,37 @@ const Header = (props) => {
 
 const Content = (props) => {   
   
-  const contentNames = [];
-  const contentExercises = [];
   const contentProps = [];
   
-  for (const value in props){
-   
-    //Array of objects
-    contentProps.push(props[value]);
-    
-    // for...in Loops to extract data from props
-
-      for (const valueObj in props[value]){
-      
-        contentNames.push(props[value][valueObj]['name']);
-        contentExercises.push(props[value][valueObj]['exercises']);
-    
-      }
-  }
-
-
+    for (const value in props){
+      //Array of objects
+      contentProps.push(props[value]);
+    }
 
   return (
-    <div>
-      {contentNames.map(value => value)} 
+  <div> 
     
-    </div> 
-    )
+  {contentProps[0].map(element => <p>{element.name} {element.exercises}</p>)}  
+    
+  </div>)
 
   }
   
 
 const Total = (props) => {
   
-  
-  
+  const contentProps = [];
+  const myArr =[];
+
+  for (const value in props){
+    //Array of objects
+    contentProps.push(props[value]);
+  }
 
 
   return(
         <div>
-        <p>Number of exercises {props.parts}</p> 
+        
         </div>
         )
 }
