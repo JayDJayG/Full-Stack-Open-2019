@@ -33,17 +33,16 @@ const Content = (props) => {
 const Total = (props) => {
   
   const contentProps = [];
-  const myArr =[];
-
+  
   for (const value in props){
     //Array of objects
     contentProps.push(props[value]);
   }
-
+  const myArr =contentProps[0].map(element => element.exercises);
 
   return(
         <div>
-        
+          <p> The Total amount of exercises is {myArr.reduce((a, b) => a+b)}</p>
         </div>
         )
 }
@@ -72,7 +71,7 @@ const App = () => {
     
     <div>
         <div>
-            <h1>Hola Mundo XX</h1>
+            
             <Header course= {course} />
             <Content part = {parts}/>
             <Total part = {parts}/>
