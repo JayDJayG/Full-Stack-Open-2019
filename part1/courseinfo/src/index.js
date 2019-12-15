@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom'
 
 
 const Header = (props) => {
-    return(
+    
+
+  return(
         <div>
-        <h1>{props.course}</h1>
+        <h1>{props.course.name}</h1>
         </div>
         )
 }
@@ -14,16 +16,19 @@ const Header = (props) => {
 const Content = (props) => {   
   
   const contentProps = [];
+  console.log(props.part.parts);
   
-    for (const value in props){
+    for (const value in props.part.parts){
       //Array of objects
-      contentProps.push(props[value]);
+      contentProps.push(props.part.parts[value]);
     }
 
+  
+  
   return (
   <div> 
     
-  {contentProps[0].map(element => <p>{element.name} {element.exercises}</p>)}  
+  {contentProps.map(element => <p>{element.name} {element.exercises}</p>)}  
     
   </div>)
 
@@ -34,11 +39,11 @@ const Total = (props) => {
   
   const contentProps = [];
   
-  for (const value in props){
+  for (const value in props.part.parts){
     //Array of objects
-    contentProps.push(props[value]);
+    contentProps.push(props.part.parts[value]);
   }
-  const myArr =contentProps[0].map(element => element.exercises);
+  const myArr =contentProps.map(element => element.exercises);
 
   return(
         <div>
@@ -49,22 +54,23 @@ const Total = (props) => {
 
 const App = () => {
 
-        const course = 'Half Stack application development';
-        
-        const parts = [
-            {
-              name: 'Fundamentals of React',
-              exercises: 10
-            },
-            {
-              name: 'Using props to pass data',
-              exercises: 7
-            },
-            {
-              name: 'State of a component',
-              exercises: 14
-            }
-          ]
+       const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
           
   return (
 
@@ -73,8 +79,8 @@ const App = () => {
         <div>
             
             <Header course= {course} />
-            <Content part = {parts}/>
-            <Total part = {parts}/>
+            <Content part = {course}/>
+            <Total part = {course}/>
         </div>  
     </div>
   )
